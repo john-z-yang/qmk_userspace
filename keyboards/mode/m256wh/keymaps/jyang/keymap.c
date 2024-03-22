@@ -73,7 +73,7 @@ bool achordion_eager_mod(uint8_t mod) {
     switch (mod) {
         case MOD_LGUI:
         case MOD_RGUI:
-            return true; // Eagerly apply GUI mods.
+            return true;
 
         default:
             return false;
