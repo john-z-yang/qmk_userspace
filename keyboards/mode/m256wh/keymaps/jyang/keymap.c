@@ -56,10 +56,28 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_achordion(keycode, record)) {
-        return false;
+    switch (keycode) {
+        case LSFT_T(KC_F):
+        case RSFT_T(KC_J):
+            return true;
+
+        default:
+            if (!process_achordion(keycode, record)) {
+                return false;
+            }
+            return true;
     }
-    return true;
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+    switch (mod) {
+        case MOD_LGUI:
+        case MOD_RGUI:
+            return true; // Eagerly apply GUI mods.
+
+        default:
+            return false;
+    }
 }
 
 void caps_word_set_user(bool active) {
