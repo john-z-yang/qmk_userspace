@@ -70,14 +70,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 }
 
 bool achordion_eager_mod(uint8_t mod) {
-    switch (mod) {
-        case MOD_LGUI:
-        case MOD_RGUI:
-            return true;
-
-        default:
-            return false;
-    }
+    return false;
 }
 
 void caps_word_set_user(bool active) {
