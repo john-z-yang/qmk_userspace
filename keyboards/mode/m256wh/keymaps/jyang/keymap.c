@@ -13,7 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "features/achordion.h"
 #include "rgblight.h"
 
 #include QMK_KEYBOARD_H
@@ -47,30 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format on
         )};
 
-void matrix_scan_user(void) {
-    achordion_task();
-}
-
 void keyboard_post_init_user(void) {
     rgblight_sethsv_noeeprom(0, 0, 0);
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        case LSFT_T(KC_F):
-        case RSFT_T(KC_J):
-            return true;
-
-        default:
-            if (!process_achordion(keycode, record)) {
-                return false;
-            }
-            return true;
-    }
-}
-
-bool achordion_eager_mod(uint8_t mod) {
-    return false;
 }
 
 void caps_word_set_user(bool active) {
